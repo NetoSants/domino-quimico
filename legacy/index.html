@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dominó Químico</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ====== TELA DE CONFIGURAÇÃO ====== -->
+  <div id="screen-setup" class="screen">
+    <h1>🧪 Dominó Químico</h1>
+    <p class="subtitle">Conecte peças formando ligações químicas válidas e declare o tipo de ligação para pontuar.</p>
+
+    <div class="card">
+      <label>Número de jogadores:</label>
+      <div class="count-row" id="count-row">
+        <button class="count-btn" data-count="2">2</button>
+        <button class="count-btn" data-count="3">3</button>
+        <button class="count-btn" data-count="4">4</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>Nomes dos jogadores:</label>
+      <div id="name-inputs"></div>
+    </div>
+
+    <button id="btn-start" class="btn primary">Começar partida</button>
+    <button id="btn-rules" class="btn ghost">Como jogar</button>
+  </div>
+
+  <!-- ====== TELA DE JOGO ====== -->
+  <div id="screen-game" class="screen hidden">
+    <div id="topbar">
+      <div id="scorebar"></div>
+      <div class="side-info">
+        <span id="bag-info"></span>
+        <button id="btn-consult" class="btn small">Tabela de consulta</button>
+      </div>
+    </div>
+
+    <div id="table-area">
+      <div id="table"></div>
+    </div>
+
+    <div id="status-bar">
+      <span id="status-msg"></span>
+    </div>
+
+    <div id="hand-area">
+      <div id="hand-row">
+        <div id="hand"></div>
+        <div id="bondpanel"></div>
+      </div>
+      <div id="actionbar"></div>
+    </div>
+
+    <div id="log-area">
+      <h3>Histórico</h3>
+      <div id="log"></div>
+    </div>
+  </div>
+
+  <!-- ====== TELA FINAL ====== -->
+  <div id="screen-end" class="screen hidden">
+    <h1>Fim de jogo!</h1>
+    <div id="ranking"></div>
+    <button id="btn-restart" class="btn primary">Jogar novamente</button>
+  </div>
+</div>
+
+<!-- ====== MODAL DE CONSULTA ====== -->
+<div id="consult-modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-head">
+      <h2>Tabela de consulta</h2>
+      <button id="btn-close-consult" class="btn small">&times;</button>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="dot" style="background:#e57373"></span> Iônica (5 pts)</span>
+      <span class="legend-item"><span class="dot" style="background:#64b5f6"></span> Covalente polar (5 pts)</span>
+      <span class="legend-item"><span class="dot" style="background:#81c784"></span> Covalente apolar (10 pts)</span>
+      <span class="legend-item"><span class="dot" style="background:#ba68c8"></span> Metálica (6 pts)</span>
+    </div>
+    <div id="consult-body"></div>
+  </div>
+</div>
+
+<!-- ====== MODAL DE REGRAS ====== -->
+<div id="rules-modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-head">
+      <h2>Como jogar</h2>
+      <button id="btn-close-rules" class="btn small">&times;</button>
+    </div>
+    <div class="rules-text">
+      <ol>
+        <li>Cada jogador começa com 5 peças. Duas peças sorteadas abrem <b>duas linhas paralelas</b> na mesa.</li>
+        <li>Cada linha tem <b>duas extremidades</b> (esquerda e direita) — 4 pontas de encaixe no total.</li>
+        <li>No seu turno, <b>arraste</b> uma peça da mão até a extremidade desejada (ou clique na peça e na ponta). A peça gira sozinha para a metade que liga.</li>
+        <li>Declare o tipo de ligação: <b>Iônica</b>, <b>Covalente polar</b>, <b>Covalente apolar</b> ou <b>Metálica</b> e confirme.</li>
+        <li>A jogada é válida se as espécies podem ligar <b>e</b> o tipo declarado está correto. Confira na tabela de consulta!</li>
+        <li>Após uma jogada válida, você pode continuar em <b>combo</b> (sempre ligando à última peça colocada).</li>
+        <li>Erro na primeira jogada: a peça volta para a mão e o turno termina. Erro em combo: só a última peça tentada volta e o turno termina.</li>
+        <li>Ao encerrar o turno — mesmo após uma jogada inválida ou penalidade — compre do saco até voltar a ter <b>5 peças</b>.</li>
+        <li>Sem peças boas na mão? Use a <b>troca</b>: descarte peças para a área temporária — elas <b>voltam ao saco ao fim do turno</b> e você compra novas.</li>
+        <li>Quando o saco não completar mais a mão, entra a <b>última rodada</b>. Ao final, vence quem tiver mais pontos.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
